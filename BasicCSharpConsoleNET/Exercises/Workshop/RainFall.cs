@@ -75,6 +75,8 @@ namespace BasicCSharpConsoleNET.Exercises.Workshop
 
             var july = rf.GetMonthlyRainfall(7);
 
+            var avg = rf.Average;
+
             var u = UserStatus.NonActive;
             // user.SetStatus(2); // Active
             // user.SetStatus(UserStatus.Active); // Active   UserStatus.Active = 2

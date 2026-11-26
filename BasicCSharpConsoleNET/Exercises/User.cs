@@ -56,4 +56,43 @@ namespace BasicCSharpConsoleNET.Exercises
             yield return new UserRole { Id = 4, UserId = 3, RoleName = "PowerUser" };
         }
     }
+
+
+
+    public class TestLinq
+    {
+        public void Run()
+        {
+            var users = CreateCollection.GetUsers().ToList();
+
+            //zapisz w osobnej kolekcji wszystkich uzytkownikow o ID < 10
+            var userWithIdLess10 = new List<User>();
+            userWithIdLess10 = users.Where(u => u.Id < 10).ToList();    //LINQ
+            //userWithIdLess10.AddRange(users.Where(u => u.Id < 10));
+            //foreach (var user in users)
+            //{
+            //    if (user.Id < 10)
+            //    {
+            //        userWithIdLess10.Add(user);
+            //    }
+            //}
+
+
+            var admin = users.First(u => u is SuperUser && ((SuperUser)u).IsAdmin);
+            //admin = users.First(IsSuperUserAdmin);
+
+            //wypisz na console wszystkie imiona uzytkownikow o ID < 10
+            foreach (var user in users)
+            {
+                if(user.Id < 10)
+                {
+                    Console.WriteLine(user.Name);
+                }
+            }
+        }
+
+        //=>   lambda
+        public bool IsSuperUserAdmin(User u) => u is SuperUser && ((SuperUser)u).IsAdmin;
+
+}
 }

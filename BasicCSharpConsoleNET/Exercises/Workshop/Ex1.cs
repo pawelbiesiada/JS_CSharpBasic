@@ -8,7 +8,18 @@ namespace BasicCSharpConsoleNET.Exercises.Workshop
     {
         public void PrintHi(string name)
         {
+            if (name == null)
+                name = string.Empty;
+
             Console.WriteLine($"Hallo {name}!");
+
+            var mc = new MyClass();
         }
+    }
+
+
+    class MyClass
+    {
+        // constructor
     }
 }

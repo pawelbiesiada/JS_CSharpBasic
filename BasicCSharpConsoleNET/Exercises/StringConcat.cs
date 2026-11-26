@@ -30,7 +30,7 @@ namespace BasicCSharpConsoleNET.Exercises
             var str = string.Empty;
             for (int i = 0; i < count; i++)
             {
-                str += " ";
+                str += " ";  //str = str + " ";
             }
         }
 
