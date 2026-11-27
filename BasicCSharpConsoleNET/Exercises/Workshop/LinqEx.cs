@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BasicCSharpConsoleNET.Exercises.Workshop
 {
@@ -11,6 +13,11 @@ namespace BasicCSharpConsoleNET.Exercises.Workshop
         {
             var users = CreateCollection.GetUsers();
 
+
+            //Dictionary<string, List<Task<User>>> list = null; 
+            // John -> 1:John, 10:John
+            // Bob -> 2:Bob, 
+
             //Any
             var hasAnyElement = users.Any();
 
@@ -19,17 +26,22 @@ namespace BasicCSharpConsoleNET.Exercises.Workshop
             var nonNullUsers = users.Count();
 
             //M-users
-            var mUsers = users
-                .Where(u => u.Name.StartsWith("M", StringComparison.CurrentCultureIgnoreCase));
-            foreach (var user in mUsers)
-            {
-                Console.WriteLine(user.Name);
-            }
+            users
+                .Where(u => u.Name.StartsWith("M", StringComparison.CurrentCultureIgnoreCase))
+                .ToList()
+                .ForEach(Console.WriteLine);
+
+
+
+            //Action<User>  ->      void Mth(User u)
+            //Func<bool, User>  ->  bool Mth(User u)
 
             //top 5 ordered
             var fiveUsers = users
                 .Take(5)
                 .OrderBy(userElement => userElement.Name);
+            
+            //var names = from u in users where u.Name.StartsWith("M") select u.Id;
 
             //get all distinct names 
             var names = users
@@ -66,12 +78,12 @@ namespace BasicCSharpConsoleNET.Exercises.Workshop
                 .ToDictionary(g => g.Key, g => g.Count());
 
 
-            //Collections
+            //Collections  -> IEnumerable
                 //Arrays
-                //List
-                //Dictionary, HashSet
-                //Stack
-                //Queue
+                //List<>
+                //Dictionary<int, string>, HashSet<int>
+                //Stack<> -> LIFO
+                //Queue<> -> FIFO
 
             var johns = dict["John"];   //dict.ContainsKey("John")
         }

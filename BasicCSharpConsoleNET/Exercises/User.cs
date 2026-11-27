@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BasicCSharpConsoleNET.Samples.Class;
+using BasicCSharpConsoleNET.Samples.Class.Inheritance;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,8 +30,15 @@ namespace BasicCSharpConsoleNET.Exercises
 
     public static class CreateCollection
     {
-        public static IEnumerable<User> GetUsers()
+
+        public static IVehicle GetCar()
         {
+            return new Car(10);
+        }
+
+
+        public static IEnumerable<User> GetUsers()
+        {  //lazy initialization
             yield return new User { Id = 1, Name = "John", IsActive = true, Password = "Password" };
             yield return new User { Id = 7, Name = "Susan", IsActive = true, Password = "qwerasdf" };
             yield return new User { Id = 2, Name = "Andrew", IsActive = true, Password = "qwerty" };
