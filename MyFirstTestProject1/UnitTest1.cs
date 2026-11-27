@@ -22,8 +22,6 @@ namespace MyFirstTestProject1
             Assert.Throws<ArgumentOutOfRangeException>(
                 () => { new Car(-5); });
 
-
-            //Assert.That(new Car(5).Distance == 0);
         }
         [Test]
         public void CanCarBeInitializedWithPositiveSpeedValue()
@@ -42,8 +40,37 @@ namespace MyFirstTestProject1
         }
 
         // Czy metoda drive poprawnie zwiekszy Distance
+        [Test]
+        public void DriveShouldIncreaseDistance()
+        {
+            Car car = new Car(30);
 
+            car.Drive(10);
+
+            Assert.That(car.Distance, Is.EqualTo(300));
+        }
+        [Test]
+        public void MultipleDriveExecutionShouldIncreaseDistance()
+        {
+            Car car = new Car(30);
+
+            car.Drive(10);
+            car.Drive(10);
+
+            Assert.That(car.Distance, Is.EqualTo(600));
+        }
 
         // czy metoda drive z wartością ujemną rzuci błędem
+        [Test]
+        public void CanDriveBeExecutedNegativeSpeedValue()
+        {
+            var car = new Car(5);
+
+            Assert.Throws<ArgumentOutOfRangeException>(
+                () => { car.Drive(-3); });
+
+
+            //Assert.That(new Car(5).Distance == 0);
+        }
     }
 }
