@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿using Microsoft.EntityFrameworkCore;
+using NLog;
 using Persistence.DbModels;
 using Persistence.Interfaces;
 using Persistence.Models;
@@ -60,7 +61,14 @@ namespace Persistence.Repositories
 
         public IEnumerable<UserDto> GetUsers()
         {
-            throw new NotImplementedException();
+            return _ctx.Users
+                .Select(CastUser);
+        }
+        public async Task<IEnumerable<UserDto>> GetUsersAsync()
+        {
+            var users = await _ctx.Users.ToListAsync();
+
+            return users.Select(CastUser);
         }
 
         public void RemoveUser(int userId)
@@ -92,5 +100,6 @@ namespace Persistence.Repositories
                 Name = u.Name,
             };
         }
+
     }
 }

@@ -84,6 +84,11 @@ namespace Persistence.Repositories
             return users;
         }
 
+        public Task<IEnumerable<UserDto>> GetUsersAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public void RemoveUser(int userId)
         {
             throw new NotImplementedException();

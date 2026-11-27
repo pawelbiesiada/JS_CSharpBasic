@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using Persistence.Models;
+using Persistence.Repositories;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -32,6 +34,7 @@ namespace MyFirstWPFApp
                     File.Create(tbFilePath.Text);
 
                 var text = File.ReadAllText(tbFilePath.Text);
+                tbContent.Text = text;
             }
             catch (Exception ex)
             {
@@ -64,9 +67,28 @@ namespace MyFirstWPFApp
             }
         }
 
-        private void Window_Loaded_1(object sender, RoutedEventArgs e)
+        private async void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
             btnSave.IsEnabled = tbFilePath.Text.Length > 3;
+
+            try
+            {
+                var users = await new EFRepository().GetUsersAsync();
+                cbUsers.ItemsSource = users.ToList();
+                cbUsers.DisplayMemberPath = "Name";
+                cbUsers.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void cbUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            tbContent.Text +=
+                ((UserDto)cbUsers.SelectedValue).Id + ":" +
+                ((UserDto)cbUsers.SelectedValue).Name + Environment.NewLine;
         }
     }
 }

@@ -18,6 +18,9 @@
                  Canvas.Top="142" Width="230" Height="217"/>
         <TextBox x:Name="tbFilePath" Canvas.Left="92" TextWrapping="Wrap" 
                  Text="C:\Temp\text.txt" Canvas.Top="103" Width="230" Height="34" TextChanged="tbFilePath_TextChanged"/>
+        <ComboBox x:Name="cbUsers" Canvas.Left="418" Canvas.Top="201" Width="138" 
+                  HorizontalAlignment="Left" VerticalAlignment="Center" 
+                  SelectionChanged="cbUsers_SelectionChanged"/>
 
     </Canvas>
 </Window>

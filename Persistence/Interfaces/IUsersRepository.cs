@@ -8,6 +8,7 @@ namespace Persistence.Interfaces
     public interface IUsersRepository
     {
         IEnumerable<UserDto> GetUsers();
+        Task<IEnumerable<UserDto>> GetUsersAsync();
         IEnumerable<UserDto> GetActiveUsers();
 
         void AddUser(UserDto user);
